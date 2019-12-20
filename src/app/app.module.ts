@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { BannerComponent } from './components/home/banner/banner.component';
+import { BannerHomeComponent } from './components/home/banner-home/banner-home.component';
 import { ServicesComponent } from './components/home/services/services.component';
 import { AboutComponent } from './components/home/about/about.component';
 import { MisionVisionComponent } from './components/home/mision-vision/mision-vision.component';
@@ -16,12 +16,13 @@ import { BlogComponent } from './components/home/blog/blog.component';
 import { GalleryComponent } from './components/home/gallery/gallery.component';
 import { ValoresComponent } from './components/home/valores/valores.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { LoaderComponent } from './components/home/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BannerComponent,
+    BannerHomeComponent,
     ServicesComponent,
     AboutComponent,
     MisionVisionComponent,
@@ -32,7 +33,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     BlogComponent,
     GalleryComponent,
     ValoresComponent,
-    FooterComponent
+    FooterComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
