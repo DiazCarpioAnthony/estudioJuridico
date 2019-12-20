@@ -17,6 +17,9 @@ import { GalleryComponent } from './components/home/gallery/gallery.component';
 import { ValoresComponent } from './components/home/valores/valores.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { LoaderComponent } from './components/home/loader/loader.component';
+import { BannerAboutComponent } from './components/about/banner-about/banner-about.component';
+import { AboutServicesComponent } from './components/about/about-services/about-services.component';
+import { AboutFreeConsultComponent } from './components/about/about-free-consult/about-free-consult.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { LoaderComponent } from './components/home/loader/loader.component';
     GalleryComponent,
     ValoresComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    BannerAboutComponent,
+    AboutServicesComponent,
+    AboutFreeConsultComponent
   ],
   imports: [
     BrowserModule,
