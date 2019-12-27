@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { publicacionController } from '../controllers/publicacionController';
+
 
 class PublicacionRoutes {
 
@@ -9,7 +11,7 @@ class PublicacionRoutes {
     }
 
     config(): void {
-        this.router.get('/', (req, res) => res.send('Publicacion'));
+        this.router.get('/', publicacionController.index );
     }
 
 }

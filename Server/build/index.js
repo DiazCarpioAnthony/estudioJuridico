@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
-const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
+const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 class Server {
     constructor() {
@@ -22,7 +22,7 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/user', loginRoutes_1.default);
         this.app.use('/api/publicacion', publicacionRoutes_1.default);
     }
     start() {

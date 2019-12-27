@@ -12,7 +12,12 @@ import { BannerBlogSingleComponent } from './components/blogSingle/banner-blog-s
 
 import { AdministradorLoginComponent } from './components/administrador/administrador-login/administrador-login.component';
 import { AdministradorDashboardComponent } from './components/administrador/administrador-dashboard/administrador-dashboard.component';
+import { AdministradorContentComponent } from './components/administrador/administrador-content/administrador-content.component';
+import { AdministradorBlankComponent } from './components/administrador/administrador-blank/administrador-blank.component';
 
+//Guard
+import { AuthGuard } from './guards/auth.guard';
+import { AuthLoginGuard } from './guards/auth-login.guard';
 
 const routes: Routes = [
 
@@ -46,11 +51,23 @@ const routes: Routes = [
   },
   {
     path: 'administrador',
-    component: AdministradorLoginComponent
+    component: AdministradorLoginComponent,
+    canActivate: [AuthLoginGuard]
   },
   {
     path: 'dashboard',
-    component: AdministradorDashboardComponent
+    component: AdministradorDashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: AdministradorContentComponent
+      },
+      {
+        path: 'blank',
+        component: AdministradorBlankComponent
+      },
+    ]
   },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];

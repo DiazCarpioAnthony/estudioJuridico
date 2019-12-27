@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +34,12 @@ import { BannerBlogSingleComponent } from './components/blogSingle/banner-blog-s
 import { BlogSinglePublicacionComponent } from './components/blogSingle/blog-single-publicacion/blog-single-publicacion.component';
 import { AdministradorLoginComponent } from './components/administrador/administrador-login/administrador-login.component';
 import { AdministradorDashboardComponent } from './components/administrador/administrador-dashboard/administrador-dashboard.component';
+import { AdministradorContentComponent } from './components/administrador/administrador-content/administrador-content.component';
+import { AdministradorBlankComponent } from './components/administrador/administrador-blank/administrador-blank.component';
+
+//Services
+import { UserService } from './services/user.service';
+import { PublicacionService } from './services/publicacion.service';
 
 @NgModule({
   declarations: [
@@ -64,13 +72,20 @@ import { AdministradorDashboardComponent } from './components/administrador/admi
     BannerBlogSingleComponent,
     BlogSinglePublicacionComponent,
     AdministradorLoginComponent,
-    AdministradorDashboardComponent
+    AdministradorDashboardComponent,
+    AdministradorContentComponent,
+    AdministradorBlankComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    UserService,
+    PublicacionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
