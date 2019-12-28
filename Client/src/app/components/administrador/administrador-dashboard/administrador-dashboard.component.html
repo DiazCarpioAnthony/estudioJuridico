@@ -21,11 +21,18 @@
     </div>
 
 
-    <!-- Nav Item - Tables -->
+    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link" routerLink="/dashboard/blank">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Publicaciones</span></a>
+      <a class="nav-link collapsed" routerLink="/dashboard/list" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Publicaciones</span>
+      </a>
+      <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" routerLink="/dashboard">Nueva Publicación</a>
+          <a class="collapse-item" routerLink="/dashboard/list">Ver Publicaciones</a>
+        </div>
+      </div>
     </li>
 
     <!-- Divider -->

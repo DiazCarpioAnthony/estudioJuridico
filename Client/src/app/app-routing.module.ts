@@ -13,7 +13,7 @@ import { BannerBlogSingleComponent } from './components/blogSingle/banner-blog-s
 import { AdministradorLoginComponent } from './components/administrador/administrador-login/administrador-login.component';
 import { AdministradorDashboardComponent } from './components/administrador/administrador-dashboard/administrador-dashboard.component';
 import { AdministradorContentComponent } from './components/administrador/administrador-content/administrador-content.component';
-import { AdministradorBlankComponent } from './components/administrador/administrador-blank/administrador-blank.component';
+import { AdministradorListComponent } from './components/administrador/administrador-list/administrador-list.component';
 
 //Guard
 import { AuthGuard } from './guards/auth.guard';
@@ -64,8 +64,8 @@ const routes: Routes = [
         component: AdministradorContentComponent
       },
       {
-        path: 'blank',
-        component: AdministradorBlankComponent
+        path: 'list',
+        component: AdministradorListComponent
       },
     ]
   },

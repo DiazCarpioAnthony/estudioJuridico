@@ -35,7 +35,7 @@ import { BlogSinglePublicacionComponent } from './components/blogSingle/blog-sin
 import { AdministradorLoginComponent } from './components/administrador/administrador-login/administrador-login.component';
 import { AdministradorDashboardComponent } from './components/administrador/administrador-dashboard/administrador-dashboard.component';
 import { AdministradorContentComponent } from './components/administrador/administrador-content/administrador-content.component';
-import { AdministradorBlankComponent } from './components/administrador/administrador-blank/administrador-blank.component';
+import { AdministradorListComponent } from './components/administrador/administrador-list/administrador-list.component';
 
 //Services
 import { UserService } from './services/user.service';
@@ -74,7 +74,7 @@ import { PublicacionService } from './services/publicacion.service';
     AdministradorLoginComponent,
     AdministradorDashboardComponent,
     AdministradorContentComponent,
-    AdministradorBlankComponent
+    AdministradorListComponent
   ],
   imports: [
     BrowserModule,
