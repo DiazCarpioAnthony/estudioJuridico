@@ -8,7 +8,11 @@ class PublicacionRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', publicacionController_1.publicacionController.index);
+        this.router.get('/', publicacionController_1.publicacionController.list);
+        this.router.get('/:id', publicacionController_1.publicacionController.getOne);
+        this.router.post('/register', publicacionController_1.publicacionController.create);
+        this.router.put('/:id', publicacionController_1.publicacionController.update);
+        this.router.delete('/:id', publicacionController_1.publicacionController.delete);
     }
 }
 const publicacionRoutes = new PublicacionRoutes();

@@ -40,6 +40,7 @@ import { AdministradorListComponent } from './components/administrador/administr
 //Services
 import { UserService } from './services/user.service';
 import { PublicacionService } from './services/publicacion.service';
+import { CategoriaService } from './services/categoria.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { PublicacionService } from './services/publicacion.service';
   ],
   providers: [
     UserService,
-    PublicacionService
+    PublicacionService,
+    CategoriaService
   ],
   bootstrap: [AppComponent]
 })

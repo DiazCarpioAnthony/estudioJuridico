@@ -11,7 +11,11 @@ class PublicacionRoutes {
     }
 
     config(): void {
-        this.router.get('/', publicacionController.index );
+        this.router.get('/', publicacionController.list );
+        this.router.get('/:id', publicacionController.getOne );
+        this.router.post('/register', publicacionController.create );
+        this.router.put('/:id', publicacionController.update );
+        this.router.delete('/:id', publicacionController.delete );
     }
 
 }
