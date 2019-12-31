@@ -5,6 +5,8 @@ const multer = require('multer');
 
 const bodyParser = require('body-parser');
 const multipart = require('connect-multiparty');
+const path = require('path');
+
 
 import loginRoutes from './routes/loginRoutes';
 import publicacionRoutes from './routes/publicacionRoutes';
@@ -50,6 +52,12 @@ class Server {
                 'message': 'File uploaded succesfully.'
             });
         });
+
+        this.app.post('/api/download', async function(req, res, next) {
+            var filepath = path.join(__dirname,'../uploads') + '/' + req.body.filename;
+            res.sendfile(filepath);
+        } );
+
     }
 
     start(): void {

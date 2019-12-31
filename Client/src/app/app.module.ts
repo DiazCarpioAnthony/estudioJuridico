@@ -37,6 +37,9 @@ import { AdministradorDashboardComponent } from './components/administrador/admi
 import { AdministradorContentComponent } from './components/administrador/administrador-content/administrador-content.component';
 import { AdministradorListComponent } from './components/administrador/administrador-list/administrador-list.component';
 
+//Externos
+import { NgxPaginationModule } from 'ngx-pagination';
+
 //Services
 import { UserService } from './services/user.service';
 import { PublicacionService } from './services/publicacion.service';
@@ -81,7 +84,8 @@ import { CategoriaService } from './services/categoria.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     UserService,

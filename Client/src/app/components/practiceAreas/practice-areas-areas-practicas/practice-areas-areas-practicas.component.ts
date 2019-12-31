@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../../../services/categoria.service';
+import { UploadService } from '../../../services/upload.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
+import { saveAs } from 'file-saver';
+import * as FileSaver from 'file-saver';
 
 /* https://es.stackoverflow.com/questions/278427/no-cargar-los-archivos-javascript-despues-de-cambio-de-componentes-en-angular */
 declare var $;
@@ -11,10 +16,24 @@ declare var $;
 })
 export class PracticeAreasAreasPracticasComponent implements OnInit {
   categorias: any = [];
-
-  constructor(private categoriaService: CategoriaService, ) { }
+  pageActual: number = 1;
+  imagesServer: any = [
+    {
+      "id_image": 14,
+      "nombre_image": "login.png"
+    },
+    {
+      "id_image": 14,
+      "nombre_image": "prueba.jpg"
+    }
+  ];
+  images: any = [];
+  image: any;
+  constructor(private categoriaService: CategoriaService, private uploadService: UploadService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.viewImages();
+
     this.categoriaService.getCategoriasAll().subscribe(
       res => {
         console.log(res);
@@ -307,7 +326,24 @@ export class PracticeAreasAreasPracticasComponent implements OnInit {
       fixedContentPos: false
     });
 
-    
+
   }
 
+  viewImages() {
+    for (let i = 0; i < this.imagesServer.length; i++) {
+      /* SUPER FUNCION MAGICA QUE PERMITE RENDERIZAR IMAGENES DEL SERVIDOR */
+      this.uploadService.downloadFile(this.imagesServer[i].nombre_image)
+        .subscribe(
+          data => {
+            console.log(data);
+            let objectURL = URL.createObjectURL(data);
+            this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+            this.images.push(this.image);
+          },
+          error => console.error(error)
+        );
+    }
+
+  }
 }

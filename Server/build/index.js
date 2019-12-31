@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -9,6 +18,7 @@ const cors_1 = __importDefault(require("cors"));
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const multipart = require('connect-multiparty');
+const path = require('path');
 const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 const categoriaRoutes_1 = __importDefault(require("./routes/categoriaRoutes"));
@@ -41,6 +51,12 @@ class Server {
         this.app.post('/api/upload', multipartMiddleware.array("uploads", 2), function (req, res) {
             res.json({
                 'message': 'File uploaded succesfully.'
+            });
+        });
+        this.app.post('/api/download', function (req, res, next) {
+            return __awaiter(this, void 0, void 0, function* () {
+                var filepath = path.join(__dirname, '../uploads') + '/' + req.body.filename;
+                res.sendfile(filepath);
             });
         });
     }
