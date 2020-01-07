@@ -8,7 +8,7 @@
                     <div class="icon d-flex justify-content-center align-items-center">
                         <span [class]="categoria.icono"></span> <!-- <span [class]="this.asd"></span> -->
                     </div>
-                    <h3 class="mb-3"><a href="practice-single.html">{{categoria.titulo}}</a></h3>
+                    <h3 class="mb-3"><a href="practice-single.html">{{categoria.nombre_categoria}}</a></h3>
                     <p>{{categoria.descripcion}}</p>
                 </div>
             </div>
@@ -18,9 +18,9 @@
                 <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
             </div>
         </div>
-        
+        <!-- 
         <div class="col-md-4 col-lg-3 text-center" *ngFor="let img of images">
             <img [src]='img' />
-        </div>
+        </div> -->
     </div>
 </section>

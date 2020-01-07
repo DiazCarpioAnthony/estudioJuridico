@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
-  API_URI2 = "http://localhost:3000/api";
-  API_URI = "https://lawyerpage.herokuapp.com/api";
+  
+  API_URI = "http://localhost:3000/api";
+  API_URI2 = "https://lawyerpage.herokuapp.com/api";
 
   private isUserLoggedIn;
   public usserLogged: Usuario;

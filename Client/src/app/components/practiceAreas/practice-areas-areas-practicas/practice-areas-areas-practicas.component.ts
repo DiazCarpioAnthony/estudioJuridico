@@ -3,9 +3,6 @@ import { CategoriaService } from '../../../services/categoria.service';
 import { UploadService } from '../../../services/upload.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { saveAs } from 'file-saver';
-import * as FileSaver from 'file-saver';
-
 /* https://es.stackoverflow.com/questions/278427/no-cargar-los-archivos-javascript-despues-de-cambio-de-componentes-en-angular */
 declare var $;
 

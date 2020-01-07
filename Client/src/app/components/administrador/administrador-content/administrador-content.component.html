@@ -32,50 +32,58 @@
           <div class="chart-area">
             <form class="user col-xl-10 col-lg-10" style="margin: auto; ">
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" placeholder="Titulo" name="Titulo">
+                <input type="text" [(ngModel)]="publicacion.title" class="form-control form-control-user"
+                  placeholder="Titulo" name="Titulo">
               </div>
               <div class="form-group">
-                <textarea rows="4" cols="50" style="border-radius: 15px;" class="form-control form-control-user"
-                  placeholder="Descripcion" name="Descripcion"></textarea>
+                <textarea rows="4" cols="50" [(ngModel)]="publicacion.description" style="border-radius: 15px;"
+                  class="form-control form-control-user" placeholder="Descripcion" name="Descripcion"></textarea>
               </div>
               <div class="form-group">
-                <textarea rows="4" cols="50" style="border-radius: 15px;" class="form-control form-control-user"
-                  placeholder="Resumen" name="Resumen"></textarea>
+                <textarea rows="4" cols="50" [(ngModel)]="publicacion.resumen" style="border-radius: 15px;"
+                  class="form-control form-control-user" placeholder="Resumen" name="Resumen"></textarea>
               </div>
               <div class="form-group">
-                <div class="col-md-4">
+                <div class="col-md-12" style="padding:0px;">
                   <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text upload" id="btnUpload">Upload</span> <!--  (click)="upload()" -->
-                    </div>
                     <div class="custom-file">
                       <form action="/api/upload" method="post" enctype="multipart/form-data">
                         <input (change)="fileChange($event)" type="file" class="custom-file-input" id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01">
+                          aria-describedby="inputGroupFileAddon01" accept="image/*">
                       </form>
-                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                      <label class="custom-file-label" for="inputGroupFile01"
+                        style="cursor: pointer;">{{this.nameFile}}</label>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div class="form-group">
-                <select class="form-control">
-                  <option value="prueba1">Prueba 1</option>
-                  <option value="prueba2">Prueba 2</option>
-                  <option value="prueba3">Prueba 3</option>
+                <label for="categorias">Categorías</label>
+                <select class="form-control" id="categorias">
+                  <option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
+                    {{categoria.nombre_categoria}}</option>
                 </select>
               </div>
-              <button class="btn btn-block btn-submit">
+
+              <div class="form-group">
+                <label>Keywords</label>
+                <div *ngFor="let keyword of keywords" class="list">
+                  <input type="checkbox" [value]="keyword.id_keyword"> {{keyword.nombre_keyword}}
+
+                </div>
+              </div>
+
+              <button class="btn btn-block btn-submit" (click)="nuevaPublicacion()">
                 Crear Nueva Publicación
               </button>
               <br>
               <br>
 
             </form>
-
           </div>
         </div>
+
       </div>
     </div>
 

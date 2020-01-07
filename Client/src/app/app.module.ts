@@ -44,6 +44,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { UserService } from './services/user.service';
 import { PublicacionService } from './services/publicacion.service';
 import { CategoriaService } from './services/categoria.service';
+import { KeywordService } from './services/keyword.service';
+import { AbogadoService } from './services/abogado.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,9 @@ import { CategoriaService } from './services/categoria.service';
   providers: [
     UserService,
     PublicacionService,
-    CategoriaService
+    CategoriaService,
+    KeywordService,
+    AbogadoService
   ],
   bootstrap: [AppComponent]
 })

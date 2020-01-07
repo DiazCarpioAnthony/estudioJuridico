@@ -22,6 +22,8 @@ const path = require('path');
 const loginRoutes_1 = __importDefault(require("./routes/loginRoutes"));
 const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 const categoriaRoutes_1 = __importDefault(require("./routes/categoriaRoutes"));
+const keywordRoutes_1 = __importDefault(require("./routes/keywordRoutes"));
+const abogadoRoutes_1 = __importDefault(require("./routes/abogadoRoutes"));
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/');
@@ -48,6 +50,8 @@ class Server {
         this.app.use('/api/user', loginRoutes_1.default);
         this.app.use('/api/publicaciones', publicacionRoutes_1.default);
         this.app.use('/api/categorias', categoriaRoutes_1.default);
+        this.app.use('/api/keyword', keywordRoutes_1.default);
+        this.app.use('/api/abogados', abogadoRoutes_1.default);
         this.app.post('/api/upload', multipartMiddleware.array("uploads", 2), function (req, res) {
             res.json({
                 'message': 'File uploaded succesfully.'
