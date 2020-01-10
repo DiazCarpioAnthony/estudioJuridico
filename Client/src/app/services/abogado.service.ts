@@ -39,6 +39,7 @@ export class AbogadoService {
     return this.http.delete(`${this.API_URI}/abogados/${id}`, { headers: getHeaders } );
   }
 
+
 }
 
 

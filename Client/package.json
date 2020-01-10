@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.14",
     "file-saver": "^2.0.2",
     "ngx-pagination": "^5.0.0",
+    "ngx-particlesjs": "^2.0.1",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.5.4",
     "tslib": "^1.10.0",

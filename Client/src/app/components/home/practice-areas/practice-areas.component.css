@@ -1,0 +1,3 @@
+pagination-controls /deep/ .ngx-pagination li.current{
+    background: #eac15a !important;
+}

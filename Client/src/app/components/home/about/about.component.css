@@ -1,0 +1,6 @@
+.block-18 {
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+}

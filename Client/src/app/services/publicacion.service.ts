@@ -23,6 +23,22 @@ export class PublicacionService {
     return this.http.get(`${this.API_URI}/publicaciones`, { headers: getHeaders });
 
   }
+  
+  getUltimas(){
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(`${this.API_URI}/publicaciones/ultimas`, { headers: getHeaders } );
+
+  }
+
+  getOne(id: Number){
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(`${this.API_URI}/publicaciones/${id}`, { headers: getHeaders } );
+
+  }
 
   createPublicacion(publicacion: Publicacion) { // ` es 96
     let getHeaders: HttpHeaders = new HttpHeaders({

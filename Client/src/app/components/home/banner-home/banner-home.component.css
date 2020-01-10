@@ -1,0 +1,159 @@
+
+
+.title-normal {
+  
+  color: #fff;
+  display: none;
+}
+
+.css-typing h1 {
+  border-right: .1em solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  letter-spacing: 4px;
+}
+
+.css-typing h1:nth-child(1) {
+  width: 100%;
+  -webkit-animation: type 4s steps(60, end), blink .5s step-end infinite alternate;
+  animation: type 4s steps(60, end), blink .5s step-end infinite alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes type {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes type {
+  0% {
+    width: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@-webkit-keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@media screen and (max-width:680px) {
+  .css-typing {
+    display: none;
+  }
+  .title-normal {
+    display: block;
+  }
+}
+
+.text {
+  position: absolute;
+  width: 450px;
+  left: 50%;
+  margin-left: -225px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+}
+
+p {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+
+.word {
+  position: absolute;
+  width: 220px;
+  opacity: 0;
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+  float: left;
+  transform: translateZ(25px);
+  transform-origin: 50% 50% 25px;
+}
+
+.letter.out {
+  transform: rotateX(90deg);
+  transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.letter.behind {
+  transform: rotateX(-90deg);
+}
+
+.letter.in {
+  transform: rotateX(0deg);
+  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wisteria {
+  color: #8e44ad;
+}
+
+.belize {
+  color: #2980b9;
+}
+
+.pomegranate {
+  color: #c0392b;
+}
+
+.green {
+  color: #16a085;
+}
+
+.midnight {
+  color: #2c3e50;
+}
+
+.opacity1 {
+  opacity: 1;
+}
+
+.btn-primary {
+  background: #eac15a;
+  color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 6px 6px 5px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 6px 5px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 6px 5px -3px rgba(0, 0, 0, 0.75);
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 15px;
+}
+
+.btn-primary:hover {
+  color: #eac15a;
+  background: rgba(175, 153, 153, .6);
+}
+
+.header {
+  -webkit-box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}

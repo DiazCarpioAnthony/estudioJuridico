@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaService } from '../../../services/categoria.service';
 
 @Component({
   selector: 'app-practice-areas',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PracticeAreasComponent implements OnInit {
 
-  constructor() { }
+  categorias: any = [];
+  pageActual: number = 1;
+  constructor(private categoriaService: CategoriaService) { }
 
   ngOnInit() {
+    
+    this.categoriaService.getCategoriasAll().subscribe(
+      res => {
+        console.log(res);
+        this.categorias = res;
+      },
+      err => console.error(err)
+    );
   }
 
 }

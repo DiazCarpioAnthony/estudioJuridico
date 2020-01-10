@@ -39,6 +39,7 @@ import { AdministradorListComponent } from './components/administrador/administr
 
 //Externos
 import { NgxPaginationModule } from 'ngx-pagination';
+import {NgxParticlesModule} from  'ngx-particlesjs';
 
 //Services
 import { UserService } from './services/user.service';
@@ -87,7 +88,8 @@ import { AbogadoService } from './services/abogado.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxParticlesModule
   ],
   providers: [
     UserService,

@@ -17,24 +17,38 @@ class PublicacionController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const publicaciones = yield database_1.default.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword ');
+            if (publicaciones == null) {
+                res.status(404);
+            }
             res.json(publicaciones);
         });
     }
     getLastIdPublicacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const publicaciones = yield database_1.default.query('select max(id_publicacion) AS lastId from publicacion order by id_publicacion desc ');
+            if (publicaciones == null) {
+                res.status(404);
+            }
             res.json(publicaciones);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const publicacion = yield database_1.default.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword where publicacion.id_publicacion = ?', [id]);
-            //console.log(usuarios[0].password);
-            if (publicacion == null) {
+            const publicaciones = yield database_1.default.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword where publicacion.id_publicacion = ?', id);
+            if (publicaciones == null) {
                 res.status(404);
             }
-            res.json(publicacion);
+            res.json(publicaciones);
+        });
+    }
+    getUltimas(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const publicacionesUltimas = yield database_1.default.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword order by publicacion.fecha desc');
+            if (publicacionesUltimas == null) {
+                res.status(404);
+            }
+            res.json(publicacionesUltimas);
         });
     }
     //FUNCIONAN AMBOS PERO DEBEN HACERSE SECUENCIAL

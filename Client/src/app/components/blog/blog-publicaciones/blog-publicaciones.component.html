@@ -15,14 +15,25 @@
                     <div class="text p-4 float-right d-block">
                         <div class="topper d-flex align-items-center">
                             <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                                <span class="day">15</span>
+                                <span class="day" style="font-size: 45px;">{{publicacion.fecha.toString().substring(8,10)}}</span>
                             </div>
                             <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                                <span class="yr">2020</span>
-                                <span class="mos">Enero</span>
+                                <span class="yr">{{publicacion.fecha.toString().substr(0,4)}}</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='01'">Enero</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='02'">Febrero</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='03'">Marzo</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='04'">Abril</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='05'">Mayo</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='06'">Junio</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='07'">Julio</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='08'">Agosto</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='09'">Septiembre</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='10'">Octubre</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='11'">Noviembre</span>
+                                <span class="mos" *ngIf="publicacion.fecha.toString().substring(5,7)=='12'">Diciembre</span>
                             </div>
                         </div>
-                        <h3 class="heading mt-2"><a routerLink="/blogSingle">{{publicacion.title}}</a>
+                        <h3 class="heading mt-2"><a routerLink="/blogSingle/{{publicacion.id_publicacion}}">{{publicacion.title}}</a>
                         </h3>
                         <p>{{publicacion.resumen}}
                         </p>

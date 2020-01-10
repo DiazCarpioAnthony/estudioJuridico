@@ -11,10 +11,10 @@ declare var $;
   styleUrls: ['./banner-home.component.css']
 })
 export class BannerHomeComponent implements OnInit {
-
+  
   constructor() { }
   ngOnInit() {
-
+    
     // loader
     setTimeout(function () {
       $('#ftco-loader').removeClass('show');

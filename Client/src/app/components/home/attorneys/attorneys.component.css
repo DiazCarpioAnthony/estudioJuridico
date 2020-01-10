@@ -1,0 +1,11 @@
+.container-fluid{
+    width: 80%;
+}
+pagination-controls /deep/ .ngx-pagination li.current{
+    background: #eac15a !important;
+}
+@media screen and (max-width:900){
+    .container-fluid{
+        width: 96%;
+    }
+}

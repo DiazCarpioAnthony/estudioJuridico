@@ -8,14 +8,14 @@
                     <div class="icon d-flex justify-content-center align-items-center">
                         <span [class]="categoria.icono"></span> <!-- <span [class]="this.asd"></span> -->
                     </div>
-                    <h3 class="mb-3"><a href="practice-single.html">{{categoria.nombre_categoria}}</a></h3>
+                    <h3 class="mb-3"><a routerLink="/practiceAreas">{{categoria.nombre_categoria}}</a></h3>
                     <p>{{categoria.descripcion}}</p>
                 </div>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col text-center">
-                <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+                <pagination-controls nextLabel="Siguiente" previousLabel="Anterior" (pageChange)="pageActual = $event"></pagination-controls>
             </div>
         </div>
         <!-- 

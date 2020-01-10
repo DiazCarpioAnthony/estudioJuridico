@@ -46,7 +46,7 @@ const routes: Routes = [
     component: BannerContactComponent
   },
   {
-    path: 'blogSingle',
+    path: 'blogSingle/:id',
     component: BannerBlogSingleComponent
   },
   {

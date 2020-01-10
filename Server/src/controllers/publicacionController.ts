@@ -7,30 +7,44 @@ class PublicacionController {
     public async list(req: Request, res: Response): Promise<void> {
 
         const publicaciones = await pool.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword ');
-
+        if (publicaciones == null) {
+            res.status(404);
+        }
+        
         res.json(publicaciones);
     }
 
     public async getLastIdPublicacion(req: Request, res: Response): Promise<void> {
 
         const publicaciones = await pool.query('select max(id_publicacion) AS lastId from publicacion order by id_publicacion desc ');
+        if (publicaciones == null) {
+            res.status(404);
+        }
+        
         res.json(publicaciones);
     }
 
 
-    public async getOne(req: Request, res: Response): Promise<void> {
-
+    public async getOne (req: Request, res: Response): Promise<void> {
 
         const { id } = req.params;
-
-        const publicacion = await pool.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword where publicacion.id_publicacion = ?', [id]);
-        //console.log(usuarios[0].password);
-        if (publicacion == null) {
+        const publicaciones = await pool.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword where publicacion.id_publicacion = ?', id);
+        if (publicaciones == null) {
             res.status(404);
         }
+        
+        res.json(publicaciones);
+    }
 
-        res.json(publicacion);
+    public async getUltimas(req: Request, res: Response): Promise<void> {
 
+
+        const publicacionesUltimas = await pool.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword order by publicacion.fecha desc');
+        if (publicacionesUltimas == null) {
+            res.status(404);
+        }
+        
+        res.json(publicacionesUltimas);
 
     }
     //FUNCIONAN AMBOS PERO DEBEN HACERSE SECUENCIAL

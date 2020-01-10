@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
+import { PublicacionService } from 'src/app/services/publicacion.service';
+import { Publicacion, Publicaciones } from 'src/app/models/publicacion';
 
 /* https://es.stackoverflow.com/questions/278427/no-cargar-los-archivos-javascript-despues-de-cambio-de-componentes-en-angular */
 declare var $;
@@ -12,9 +16,26 @@ declare var $;
 })
 export class BannerBlogSingleComponent implements OnInit {
 
-  constructor() { }
+  publicacionId:Number ;
+  publicacionActual: Array<Publicaciones> = [];
+  agrupadosActual: Array<Publicaciones> = [];
+  auxActual: Array<Publicaciones> = [];
+
+  constructor(private publicacionService: PublicacionService, activateRoute: ActivatedRoute) { 
+    this.publicacionId = activateRoute.snapshot.params['id'];
+  }
 
   ngOnInit() {
+    this.publicacionService.getOne(this.publicacionId).subscribe(
+      (res: Array<Publicaciones>) => {
+        
+        this.publicacionActual = res;
+        
+        this.concatenar(this.publicacionActual);
+        console.log(this.publicacionActual);
+      },
+      err => console.error(err)
+    );
 
     // loader
     setTimeout(function () {
@@ -300,5 +321,46 @@ export class BannerBlogSingleComponent implements OnInit {
 
       fixedContentPos: false
     });
+  }
+
+  
+  concatenar(array: Array<Publicaciones>) {
+    for (var i = 0; i < array.length; i++) {
+      this.agrupadosActual.push(array[i]);
+      this.auxActual.push(array[i]);
+    }
+
+    var auxiliar = "";
+    for (var i = 0; i < array.length; i++) {
+      auxiliar = "";
+      for (var j = 0; j < this.agrupadosActual.length; j++) {
+
+        //this.agrupados.push(array[i]);
+        //console.log(this.agrupados[j].id_publicacion + " - " + array[i].id_publicacion);
+        if (this.agrupadosActual[j].id_publicacion == array[i].id_publicacion) {
+          //console.log("COMPARA: "+this.agrupados[j].id_publicacion + " - " + array[i].id_publicacion);
+          auxiliar = auxiliar.concat(this.agrupadosActual[j].nombre_keyword, ', ');
+
+        }
+      }
+      this.auxActual[i].nombre_keyword = auxiliar.substr(0, auxiliar.length - 2);
+    }
+
+    const eliminarRepetidos = (array: Array<Publicaciones>) => {
+      var unicos = [];
+      var itemsEncontrados = {};
+      for (var i = 0, l = array.length; i < l; i++) {
+        var stringified = JSON.stringify(array[i].id_publicacion);
+        if (itemsEncontrados[stringified]) { continue; }
+        unicos.push(array[i]);
+        itemsEncontrados[stringified] = true;
+      }
+      return unicos;
+    }
+
+    this.publicacionActual = eliminarRepetidos(this.auxActual);
+
+
+    
   }
 }
