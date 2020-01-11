@@ -11,6 +11,7 @@ export class AttorneysLawyersComponent implements OnInit {
 
   abogados: any = [];
 
+  pageActual:number = 1;
   constructor(private abogadoService: AbogadoService) { }
 
   ngOnInit() {

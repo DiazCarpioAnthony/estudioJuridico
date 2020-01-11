@@ -10,6 +10,7 @@ import { AbogadoService } from 'src/app/services/abogado.service';
 export class AttorneysComponent implements OnInit {
 
   abogados: any = [];
+  pageActual2:number = 1;
   
   constructor(private abogadoService: AbogadoService) { }
 
