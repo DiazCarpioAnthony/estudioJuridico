@@ -79,6 +79,7 @@ export class BlogSingleListComponent implements OnInit {
       },
       err => console.error(err)
     );
+    
     if ($(window).width() < 770) {
 
       $("#group").removeClass("col-lg-12 d-flex");

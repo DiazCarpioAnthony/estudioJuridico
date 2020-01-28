@@ -75,7 +75,6 @@
 
 </div>
 
-<div *ngIf="publicacionId">
     <div class="sidebar-box ftco-animate">
         <div *ngFor="let pActual of publicacionActual">
             <h3>Etiquetas</h3>
@@ -84,12 +83,9 @@
             </div>
         </div>
     </div>
-</div>
-<div *ngIf="publicacionId">
     <div class="sidebar-box ftco-animate">
         <div *ngFor="let pActual of publicacionActual">
             <h3>Resumen</h3>
             <p>{{pActual.resumen}}</p>
         </div>
     </div>
-</div>
