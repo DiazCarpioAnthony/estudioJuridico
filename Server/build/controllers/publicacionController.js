@@ -23,6 +23,16 @@ class PublicacionController {
             res.json(publicaciones);
         });
     }
+    byCategoria(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const publicacionesByCategoria = yield database_1.default.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword where publicacion.id_categoria = ?', id);
+            if (publicacionesByCategoria == null) {
+                res.status(404);
+            }
+            res.json(publicacionesByCategoria);
+        });
+    }
     getLastIdPublicacion(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const publicaciones = yield database_1.default.query('select max(id_publicacion) AS lastId from publicacion order by id_publicacion desc ');

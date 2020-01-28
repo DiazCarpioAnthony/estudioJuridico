@@ -20,6 +20,7 @@ declare var $;
 export class BlogSingleListComponent implements OnInit {
 
   publicacionId: any;
+  therePublicaciones: boolean = false;
 
   categorias: any = [];
   images: any = [];
@@ -41,15 +42,20 @@ export class BlogSingleListComponent implements OnInit {
     this.activateRoute.paramMap.subscribe((params: ParamMap) => {
       this.publicacionId = this.activateRoute.snapshot.paramMap.get("idCategoria");
 
-      this.publicacionService.getOne(this.publicacionId).subscribe(
+      this.publicacionService.getPublicacionesByCategoria(this.publicacionId).subscribe(
         (res: Array<Publicaciones>) => {
 
 
           this.publicacionActual = null;
           this.publicacionActual = res;
+          if (Object.keys(res).length != 0) {
+            this.therePublicaciones = true;
+          }else{
+            this.therePublicaciones = false;
 
+          }
 
-          console.log("-----DESPUES DEL RES-------");
+          console.log("-----ULTIMITA-------");
           console.log(this.publicacionActual);
           this.concatenar(this.publicacionActual);
 
@@ -79,29 +85,29 @@ export class BlogSingleListComponent implements OnInit {
       },
       err => console.error(err)
     );
-    
+
     if ($(window).width() < 770) {
 
       $("#group").removeClass("col-lg-12 d-flex");
       $(".reverse").removeClass("d-flex flex-column-reverse");
-      
+
     } else {
       $("#group").addClass("col-lg-12 d-flex");
       $(".reverse").addClass("d-flex flex-column-reverse");
 
     }
     $(window).resize(function () {
-      
-    if ($(window).width() < 770) {
 
-      $("#group").removeClass("col-lg-12 d-flex");
-      $(".reverse").removeClass("d-flex flex-column-reverse");
-      
-    } else {
-      $("#group").addClass("col-lg-12 d-flex");
-      $(".reverse").addClass("d-flex flex-column-reverse");
+      if ($(window).width() < 770) {
 
-    }
+        $("#group").removeClass("col-lg-12 d-flex");
+        $(".reverse").removeClass("d-flex flex-column-reverse");
+
+      } else {
+        $("#group").addClass("col-lg-12 d-flex");
+        $(".reverse").addClass("d-flex flex-column-reverse");
+
+      }
     });
 
   }

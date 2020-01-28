@@ -10,6 +10,7 @@ class PublicacionRoutes {
     config() {
         this.router.get('/last', publicacionController_1.publicacionController.getLastIdPublicacion);
         this.router.get('/ultimas', publicacionController_1.publicacionController.getUltimas);
+        this.router.get('/byCategoria/:id', publicacionController_1.publicacionController.byCategoria);
         this.router.get('/:id', publicacionController_1.publicacionController.getOne);
         this.router.get('/', publicacionController_1.publicacionController.list);
         this.router.post('/create', publicacionController_1.publicacionController.createPublicacion);

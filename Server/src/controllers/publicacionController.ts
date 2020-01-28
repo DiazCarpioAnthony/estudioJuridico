@@ -14,6 +14,17 @@ class PublicacionController {
         res.json(publicaciones);
     }
 
+    public async byCategoria(req: Request, res: Response): Promise<void> {
+
+        const { id } = req.params;
+        const publicacionesByCategoria = await pool.query('select * from publicacion join categoria ON publicacion.id_categoria = categoria.id_categoria join keyword_has_publicacion ON publicacion.id_publicacion = keyword_has_publicacion.id_publicacion join keyword ON keyword_has_publicacion.id_keyword = keyword.id_keyword where publicacion.id_categoria = ?', id);
+        if (publicacionesByCategoria == null) {
+            res.status(404);
+        }
+
+        res.json(publicacionesByCategoria);
+    }
+
     public async getLastIdPublicacion(req: Request, res: Response): Promise<void> {
 
         const publicaciones = await pool.query('select max(id_publicacion) AS lastId from publicacion order by id_publicacion desc ');

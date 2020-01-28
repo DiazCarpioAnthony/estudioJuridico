@@ -2,8 +2,8 @@
     <p>
         <img [src]='pActual.image.substr(1,pActual.image.length-2)' class="img-fluid" />
     </p>
-    <h2 class="mb-3">{{pActual.title}}</h2>
-    <p style="white-space: pre-wrap;">{{pActual.description}}</p>
+    <h2 class="mb-3"  style="white-space: pre-wrap; word-break: break-all;">{{pActual.title.substr(1,pActual.title.length-2)}}</h2>
+    <p style="white-space: pre-wrap; word-break: break-all;">{{pActual.description.substr(1,pActual.description.length-2)}}</p>
 
     <div class="tag-widget post-tag-container mb-5 mt-5">
         <div class="tagcloud">

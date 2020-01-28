@@ -1,141 +1,93 @@
-<div id="colorlib-page" class="list-android" >
+<div id="colorlib-page" class="list-android">
 
     <div id="colorlib-main" style="width: 100%; height: 100%;">
         <section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
             <div class="container px-0">
                 <div class="row no-gutters">
-                    <div  id="group" style="margin-bottom: 20px;">
-                        <div class="col-md-4 d-flex only-android" style="padding: 5px;">
-                            <div class="blog-entry slideInUp " style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                            -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                            box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
-                                <a href="single.html" class="img"
-                                    style="background-image: url('assets/images/images/image_4.jpg');"></a>
-                                <div class="text p-4">
-                                    <h3 class="mb-2"><a href="single.html">A Loving Heart is the Truest Wisdom</a></h3>
-                                    <div class="meta-wrap">
-                                        <p class="meta">
-                                            <span><i class="icon-calendar mr-2"></i>Sept. 10, 2019</span>
-                                            <span><a href="single.html"><i
-                                                        class="icon-folder-o mr-2"></i>Travel</a></span>
-                                            <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-                                        </p>
-                                    </div>
-                                    <p class="mb-4">A small river named Duden flows by their place and supplies</p>
-                                    <p><a href="#" class="btn-custom">Read More <span
-                                                class="ion-ios-arrow-forward"></span></a></p>
+
+                    <div class="col-md-4 d-flex only-android" style="padding: 5px;  margin: 4px 0; "
+                        *ngFor="let i = index; let pActual of publicacionActual | paginate: {itemsPerPage: 9, currentPage: pageActual}">
+                        <div *ngIf="i%2!=0" class="blog-entry slideInUp d-flex flex-column-reverse" style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
+                        -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
+                        box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
+                            <a routerLink="/blogSingle/{{pActual.id_publicacion}}" class="img" style="background-size: cover;"
+                            [ngStyle]="{ 'background-image': 'url(' + pActual.image.substr(1,pActual.image.length-2) + ')'}"    
+                            ></a>
+                            <div class="text p-4">
+                                <h3 class="mb-2"><a routerLink="/blogSingle/{{pActual.id_publicacion}}" style="font-size: 16px;">{{pActual.title}}</a>
+                                </h3>
+                                <div class="meta-wrap">
+                                    <p class="meta">
+                                        <span style="font-size: 12px;"><i class="icon-calendar mr-2"></i>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='01'" style="margin-right: 0px;">Ene.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='02'" style="margin-right: 0px;">Feb.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='03'" style="margin-right: 0px;">Mar.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='04'" style="margin-right: 0px;">Abr.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='05'" style="margin-right: 0px;">May.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='06'" style="margin-right: 0px;">Jun.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='07'" style="margin-right: 0px;">Jul.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='08'" style="margin-right: 0px;">Agos.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='09'" style="margin-right: 0px;">Sept.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='10'" style="margin-right: 0px;">Oct.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='11'" style="margin-right: 0px;">Nov.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='12'" style="margin-right: 0px;">Dic.</span>
+                                            {{pActual.fecha.toString().substring(8,10)}}, {{pActual.fecha.toString().substr(0,4)}}</span>
+                                        <span><a routerLink="/blogSingle/{{pActual.id_publicacion}}" style="font-size: 12px;"><i
+                                                    class="icon-folder-o mr-2"></i>{{pActual.nombre_keyword}}</a></span>
+                                    </p>
                                 </div>
+                                <p class="mb-4" style="font-size: 12px; 
+                                word-break: break-all;">{{pActual.resumen}}</p>
+                                <p><a routerLink="/blogSingle/{{pActual.id_publicacion}}" class="btn-custom" style="font-size: 12px;">Read More <span
+                                            class="ion-ios-arrow-forward"></span></a></p>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex only-android" style="padding: 5px;">
-                            <div class="blog-entry slideInUp reverse" style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                            -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                            box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
-                                <a href="single.html" class="img"
-                                    style="background-image: url('assets/images/images/image_5.jpg');"></a>
-                                <div class="text p-4" >
-                                    <h3 class="mb-2"><a href="single.html">A Loving Heart is the Truest Wisdom</a></h3>
-                                    <div class="meta-wrap">
-                                        <p class="meta">
-                                            <span><i class="icon-calendar mr-2"></i>Sept. 10, 2019</span>
-                                            <span><a href="single.html"><i
-                                                        class="icon-folder-o mr-2"></i>Travel</a></span>
-                                            <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-                                        </p>
-                                    </div>
-                                    <p class="mb-4">A small river named Duden flows by their place and supplies</p>
-                                    <p><a href="#" class="btn-custom">Read More <span
-                                                class="ion-ios-arrow-forward"></span></a></p>
+                        <div *ngIf="i%2==0" class="blog-entry slideInUp " style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
+                        -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
+                        box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
+                            <a routerLink="/blogSingle/{{pActual.id_publicacion}}" class="img" style="background-size: cover;"
+                            [ngStyle]="{ 'background-image': 'url(' + pActual.image.substr(1,pActual.image.length-2) + ')'}"    
+                            ></a>
+                            <div class="text p-4">
+                                <h3 class="mb-2"><a routerLink="/blogSingle/{{pActual.id_publicacion}}" style="white-space: pre-wrap; word-break: break-all; font-size: 16px;">{{pActual.title.substr(1,pActual.title.length-2)}}</a>
+                                </h3>
+                                <div class="meta-wrap">
+                                    <p class="meta">
+                                        <span style="font-size: 12px;"><i class="icon-calendar mr-2"></i>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='01'" style="margin-right: 0px;">Ene.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='02'" style="margin-right: 0px;">Feb.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='03'" style="margin-right: 0px;">Mar.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='04'" style="margin-right: 0px;">Abr.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='05'" style="margin-right: 0px;">May.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='06'" style="margin-right: 0px;">Jun.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='07'" style="margin-right: 0px;">Jul.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='08'" style="margin-right: 0px;">Agos.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='09'" style="margin-right: 0px;">Sept.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='10'" style="margin-right: 0px;">Oct.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='11'" style="margin-right: 0px;">Nov.</span>
+                                            <span *ngIf="pActual.fecha.toString().substring(5,7)=='12'" style="margin-right: 0px;">Dic.</span>
+                                            {{pActual.fecha.toString().substring(8,10)}}, {{pActual.fecha.toString().substr(0,4)}}</span>
+                                        <span><a routerLink="/blogSingle/{{pActual.id_publicacion}}" style="font-size: 12px;"><i
+                                                    class="icon-folder-o mr-2"></i>{{pActual.nombre_keyword}}</a></span>
+                                    </p>
                                 </div>
+                                <p class="mb-4" style="font-size: 12px; 
+                                word-break: break-all;">{{pActual.resumen}}</p>
+                                <p><a routerLink="/blogSingle/{{pActual.id_publicacion}}" class="btn-custom" style="font-size: 12px;">Read More <span
+                                            class="ion-ios-arrow-forward"></span></a></p>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex only-android" style="padding: 5px;">
-                            <div class="blog-entry slideInUp" style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                            -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                            box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
-                                <a href="single.html" class="img"
-                                    style="background-image: url('assets/images/images/image_6.jpg');"></a>
-                                <div class="text p-4">
-                                    <h3 class="mb-2"><a href="single.html">A Loving Heart is the Truest Wisdom</a></h3>
-                                    <div class="meta-wrap">
-                                        <p class="meta">
-                                            <span><i class="icon-calendar mr-2"></i>Sept. 10, 2019</span>
-                                            <span><a href="single.html"><i
-                                                        class="icon-folder-o mr-2"></i>Travel</a></span>
-                                            <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-                                        </p>
-                                    </div>
-                                    <p class="mb-4">A small river named Duden flows by their place and supplies</p>
-                                    <p><a href="#" class="btn-custom">Read More <span
-                                                class="ion-ios-arrow-forward"></span></a></p>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <div *ngIf="!therePublicaciones" class="slideInUp ">
+                        <h3>No hay publicaciones aún.</h3>
                     </div>
 
-                    <div class="col-md-4 d-flex only-android" style="padding: 5px;">
-                        <div class="blog-entry slideInUp reverse" style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                        -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                        box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
-                            <a href="single.html" class="img"
-                                style="background-image: url('assets/images/images/image_4.jpg');"></a>
-                            <div class="text p-4" >
-                                <h3 class="mb-2"><a href="single.html">A Loving Heart is the Truest Wisdom</a></h3>
-                                <div class="meta-wrap">
-                                    <p class="meta">
-                                        <span><i class="icon-calendar mr-2"></i>Sept. 10, 2019</span>
-                                        <span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
-                                        <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-                                    </p>
-                                </div>
-                                <p class="mb-4">A small river named Duden flows by their place and supplies</p>
-                                <p><a href="#" class="btn-custom">Read More <span
-                                            class="ion-ios-arrow-forward"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-flex only-android" style="padding: 5px;">
-                        <div class="blog-entry slideInUp " style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                        -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                        box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
-                            <a href="single.html" class="img"
-                                style="background-image: url('assets/images/images/image_5.jpg');"></a>
-                            <div class="text p-4" >
-                                <h3 class="mb-2"><a href="single.html">A Loving Heart is the Truest Wisdom</a></h3>
-                                <div class="meta-wrap">
-                                    <p class="meta">
-                                        <span><i class="icon-calendar mr-2"></i>Sept. 10, 2019</span>
-                                        <span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
-                                        <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-                                    </p>
-                                </div>
-                                <p class="mb-4">A small river named Duden flows by their place and supplies</p>
-                                <p><a href="#" class="btn-custom">Read More <span
-                                            class="ion-ios-arrow-forward"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 d-flex only-android" style="padding: 5px;">
-                        <div class="blog-entry slideInUp reverse" style="-webkit-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                        -moz-box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);
-                        box-shadow: 3px 2px 5px 0px rgba(0,0,0,0.75);">
-                            <a href="single.html" class="img"
-                                style="background-image: url('assets/images/images/image_6.jpg');"></a>
-                            <div class="text p-4" >
-                                <h3 class="mb-2"><a href="single.html">A Loving Heart is the Truest Wisdom</a></h3>
-                                <div class="meta-wrap">
-                                    <p class="meta">
-                                        <span><i class="icon-calendar mr-2"></i>Sept. 10, 2019</span>
-                                        <span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
-                                        <span><i class="icon-comment2 mr-2"></i>5 Comment</span>
-                                    </p>
-                                </div>
-                                <p class="mb-4">A small river named Duden flows by their place and supplies</p>
-                                <p><a href="#" class="btn-custom">Read More <span
-                                            class="ion-ios-arrow-forward"></span></a></p>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <pagination-controls nextLabel="Siguiente" previousLabel="Anterior"  (pageChange)="pageActual = $event"></pagination-controls>
                 </div>
             </div>
         </section>

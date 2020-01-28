@@ -25,6 +25,14 @@ export class PublicacionService {
 
   }
 
+  getPublicacionesByCategoria(id: Number) { // ` es 96
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.get(`${this.API_URI}/publicaciones/byCategoria/${id}`, { headers: getHeaders });
+
+  }
+
   getUltimas() {
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
