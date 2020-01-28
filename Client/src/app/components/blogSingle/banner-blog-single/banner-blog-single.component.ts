@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { PublicacionService } from 'src/app/services/publicacion.service';
 import { Publicacion, Publicaciones } from 'src/app/models/publicacion';
@@ -16,26 +16,40 @@ declare var $;
 })
 export class BannerBlogSingleComponent implements OnInit {
 
-  publicacionId:Number ;
+  publicacionId: any;
   publicacionActual: Array<Publicaciones> = [];
   agrupadosActual: Array<Publicaciones> = [];
   auxActual: Array<Publicaciones> = [];
 
-  constructor(private publicacionService: PublicacionService, activateRoute: ActivatedRoute) { 
-    this.publicacionId = activateRoute.snapshot.params['id'];
+  constructor(private publicacionService: PublicacionService, public activateRoute: ActivatedRoute) {
+
   }
 
   ngOnInit() {
-    this.publicacionService.getOne(this.publicacionId).subscribe(
-      (res: Array<Publicaciones>) => {
-        
-        this.publicacionActual = res;
-        
-        this.concatenar(this.publicacionActual);
-        console.log(this.publicacionActual);
-      },
-      err => console.error(err)
-    );
+    this.activateRoute.paramMap.subscribe((params: ParamMap) => {
+      this.publicacionId = this.activateRoute.snapshot.paramMap.get("id");
+      this.publicacionService.getOne(this.publicacionId).subscribe(
+        (res: Array<Publicaciones>) => {
+          console.log("----------RES");
+          console.log(res);
+
+          this.publicacionActual=null;
+          this.publicacionActual = res;
+          console.log("----------PUBLICACION ACUTAL");
+          console.log(this.publicacionActual);
+
+
+          this.concatenar(this.publicacionActual);
+          console.log("----------WAAAAAAAA");
+          console.log(this.publicacionActual);
+        },
+        err => console.error(err)
+      );
+
+
+    })
+
+
 
     // loader
     setTimeout(function () {
@@ -323,8 +337,11 @@ export class BannerBlogSingleComponent implements OnInit {
     });
   }
 
-  
+
   concatenar(array: Array<Publicaciones>) {
+    
+    this.agrupadosActual=[];
+    this.auxActual=[];
     for (var i = 0; i < array.length; i++) {
       this.agrupadosActual.push(array[i]);
       this.auxActual.push(array[i]);
@@ -361,6 +378,6 @@ export class BannerBlogSingleComponent implements OnInit {
     this.publicacionActual = eliminarRepetidos(this.auxActual);
 
 
-    
+
   }
 }

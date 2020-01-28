@@ -80,4 +80,8 @@ export class AdministradorListComponent implements OnInit {
 
   }
 
+  deletePublicacion(id:any){
+    alert(id);
+  }
+
 }

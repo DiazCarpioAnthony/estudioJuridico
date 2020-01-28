@@ -38,7 +38,7 @@ export class BlogPublicacionesComponent implements OnInit {
         console.log(res);
         this.publicaciones = res;
         this.concatenar(this.publicaciones);
-        this.viewImages();
+        //this.viewImages();
       },
       err => console.error(err)
     );

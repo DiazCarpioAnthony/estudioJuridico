@@ -47,6 +47,16 @@ import { PublicacionService } from './services/publicacion.service';
 import { CategoriaService } from './services/categoria.service';
 import { KeywordService } from './services/keyword.service';
 import { AbogadoService } from './services/abogado.service';
+import { PageErrorComponent } from './components/page-error/page-error.component';
+import { CategoriaListComponent } from './components/administrador/categoria/categoria-list/categoria-list.component';
+import { CategoriaNewComponent } from './components/administrador/categoria/categoria-new/categoria-new.component';
+import { CategoriaUpdateComponent } from './components/administrador/categoria/categoria-update/categoria-update.component';
+import { KeywordListComponent } from './components/administrador/keyword/keyword-list/keyword-list.component';
+import { KeywordNewComponent } from './components/administrador/keyword/keyword-new/keyword-new.component';
+import { KeywordUpdateComponent } from './components/administrador/keyword/keyword-update/keyword-update.component';
+import { AdministradorUpdateComponent } from './components/administrador/administrador-update/administrador-update.component';
+import { BlogSingleListComponent } from './components/blogSingle/blog-single-list/blog-single-list.component';
+import { BlogSingleAsideComponent } from './components/blogSingle/blog-single-aside/blog-single-aside.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +91,17 @@ import { AbogadoService } from './services/abogado.service';
     AdministradorLoginComponent,
     AdministradorDashboardComponent,
     AdministradorContentComponent,
-    AdministradorListComponent
+    AdministradorListComponent,
+    PageErrorComponent,
+    CategoriaListComponent,
+    CategoriaNewComponent,
+    CategoriaUpdateComponent,
+    KeywordListComponent,
+    KeywordNewComponent,
+    KeywordUpdateComponent,
+    AdministradorUpdateComponent,
+    BlogSingleListComponent,
+    BlogSingleAsideComponent
   ],
   imports: [
     BrowserModule,

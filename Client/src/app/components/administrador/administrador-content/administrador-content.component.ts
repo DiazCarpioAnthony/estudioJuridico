@@ -69,14 +69,14 @@ export class AdministradorContentComponent implements OnInit {
       err => console.error(err)
     );
   }
-
+/*
   fileChange(element) {
     this.uploadedFiles = element.target.files;
     for (var i = 0; i < this.uploadedFiles.length; i++) {
       this.nameFile = this.uploadedFiles[i].name;
     }
   }
-
+*/
   getCheckeds() {
     var keys = [];
     this.checkeds = [];
@@ -101,33 +101,11 @@ export class AdministradorContentComponent implements OnInit {
 
     this.checkeds = eliminarRepetidos(this.checkeds);
   }
-
-  upload() {
-    let formData = new FormData();
-    for (var i = 0; i < this.uploadedFiles.length; i++) {
-      formData.append("uploads", this.uploadedFiles[i], this.uploadedFiles[i].name);
-    }
-    this.serviceUpload.uploadFile(formData).subscribe((res) => {
-      console.log('response received is ', res);
-      alert("-"+this.publicacion.image+"-");
-      Swal.fire({
-        title: 'Publicación registrada correctamente',
-        icon: 'success',
-        showClass: {
-          popup: 'animated fadeInDown faster'
-        },
-        hideClass: {
-          popup: 'animated fadeOutUp faster'
-        }
-      })
-    });
-  }
-
   nuevaPublicacion() {
     //this.upload();
-    for (var i = 0; i < this.uploadedFiles.length; i++) {
+    /*for (var i = 0; i < this.uploadedFiles.length; i++) {
       this.nameFile = this.uploadedFiles[i].name;
-    }
+    }*/
     //Guardar en la API que falta crear
 
     delete this.publicacion.id_publicacion;
@@ -138,7 +116,7 @@ export class AdministradorContentComponent implements OnInit {
     delete this.publicacion.fecha;
     delete this.publicacion.nombre_keyword;
 
-    this.publicacion.image = this.nameFile;
+    //this.publicacion.image = this.nameFile;
     this.publicacion.id_categoria = $("#categorias option:selected").val();
 
     console.log("PUBLICACION----------------");
@@ -177,7 +155,17 @@ export class AdministradorContentComponent implements OnInit {
       console.log(lastIdPublicacion);
       this.publicacionService.addKeyword(lastIdPublicacion, this.keyword).subscribe(
         res => {
-          this.upload();
+          //this.upload();
+          Swal.fire({
+            title: 'Publicación registrada correctamente',
+            icon: 'success',
+            showClass: {
+              popup: 'animated fadeInDown faster'
+            },
+            hideClass: {
+              popup: 'animated fadeOutUp faster'
+            }
+          })
         },
         err => console.error(err)
       );

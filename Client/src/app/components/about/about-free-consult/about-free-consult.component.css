@@ -1,0 +1,11 @@
+
+.subheading{
+    display: block;
+    background: #100e17;
+    padding: 15px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 15px;
+    margin-top: -10px;
+}

@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <section class="hero-wrap hero-wrap-2" style="background-image: url('assets/images/bg_2.jpg');"
     data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -10,16 +8,37 @@
                     <h1 class="mb-3 bread">{{pActual.title}}</h1>
                     <p class="breadcrumbs"><span class="mr-2"><a routerLink="/home">Inicio <i
                                     class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a
-                                routerLink="/blog">Publicaciones <i class="ion-ios-arrow-forward"></i></a></span> <span>{{pActual.title}}
+                                routerLink="/blog">Publicaciones <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span>{{pActual.title}}
                             <i class="ion-ios-arrow-forward"></i></span></p>
                 </div>
 
+                <div *ngIf="!publicacionId">
+                    <h1 class="mb-3 bread">Categoria</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a routerLink="/home">Inicio <i
+                                    class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a
+                                routerLink="/blog">Publicaciones <i class="ion-ios-arrow-forward"></i></a></span>
+                        <span>Categorias
+                            <i class="ion-ios-arrow-forward"></i></span></p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<app-blog-single-publicacion></app-blog-single-publicacion>
+<section class="ftco-section ftco-degree-bg">
+    <div class="container">
+        <div class="row ftco-animate">
+            <div class="col-lg-4 sidebar ftco-animate">
+
+                <app-blog-single-aside></app-blog-single-aside>
+            </div>
+            <div class="col-lg-8 order-md-last ">
+                <router-outlet></router-outlet>
+            </div> <!-- .col-md-8 -->
+        </div>
+    </div>
+</section> <!-- .section -->
 
 <app-footer></app-footer>
 

@@ -19,6 +19,7 @@ class PublicacionRoutes {
         this.router.post('/:id', publicacionController.addKeyword );
         this.router.put('/:id', publicacionController.update );
         this.router.delete('/:id', publicacionController.delete );
+        this.router.delete('/keywordsOfPublicacion/:id', publicacionController.deleteKeywords );
     }
 
 }

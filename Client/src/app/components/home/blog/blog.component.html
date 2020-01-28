@@ -12,8 +12,8 @@
 			<div class="row d-flex" >
 				<div class="col-md-4 d-flex ftco-animated" *ngFor="let publicacion of publicaciones ">
 					<div class="blog-entry justify-content-end"> 
-						<a routerLink="/blogSingle" class="block-20" >
-							<img [src]='publicacion.img' />
+						<a routerLink="/blogSingle/{{publicacion.id_publicacion}}" class="block-20" >
+							<img [src]='publicacion.image.substr(1,this.publicacion.image.length-2)' style="width: 100%;"/>
 						</a>
 						<div class="text p-4 float-right d-block" style="word-wrap: break-word;">
 							<div class="topper d-flex align-items-center">

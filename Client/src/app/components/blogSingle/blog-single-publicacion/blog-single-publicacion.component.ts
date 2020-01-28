@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, ParamMap } from '@angular/router';
 
 import { UploadService } from '../../../services/upload.service';
 import { CategoriaService } from '../../../services/categoria.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PublicacionService } from 'src/app/services/publicacion.service';
 import { Publicacion, Publicaciones } from 'src/app/models/publicacion';
+import { Router } from '@angular/router';
 import { concat } from 'rxjs';
 
 
@@ -16,8 +17,8 @@ import { concat } from 'rxjs';
 })
 export class BlogSinglePublicacionComponent implements OnInit {
 
-  publicacionId:Number ;
-  
+  publicacionId: any;
+
   categorias: any = [];
   images: any = [];
   image: any;
@@ -28,37 +29,47 @@ export class BlogSinglePublicacionComponent implements OnInit {
   agrupadosActual: Array<Publicaciones> = [];
   aux: Array<Publicaciones> = [];
   auxActual: Array<Publicaciones> = [];
-  keywords:any = [];
-  
-  constructor(private categoriaService: CategoriaService, private uploadService: UploadService, private sanitizer: DomSanitizer, private publicacionService: PublicacionService, activateRoute: ActivatedRoute) {
-    this.publicacionId = activateRoute.snapshot.params['id'];
+  keywords: any = [];
+
+  constructor(private router: Router, private categoriaService: CategoriaService, private uploadService: UploadService, private sanitizer: DomSanitizer, private publicacionService: PublicacionService, public activateRoute: ActivatedRoute) {
+
   }
 
   ngOnInit() {
+    this.activateRoute.paramMap.subscribe((params: ParamMap) => {
+      this.publicacionId = this.activateRoute.snapshot.paramMap.get("id");
+
+      this.publicacionService.getOne(this.publicacionId).subscribe(
+        (res: Array<Publicaciones>) => {
+
+
+          this.publicacionActual=null;
+          this.publicacionActual = res;
+          
+
+          console.log("-----DESPUES DEL RES-------");
+          console.log(this.publicacionActual);
+          this.concatenar(this.publicacionActual);
+          
+        },
+        err => console.error(err)
+      );    
+
+    })
+
     this.publicacionService.getUltimas().subscribe(
       (res: Array<Publicaciones>) => {
         this.publicaciones = res;
         this.concatenar2(this.publicaciones);
-        
+
         this.getNumber(this.publicaciones, 4);
-        this.viewImages2();
         console.log("---------------------");
         console.log(this.publicaciones);
       },
       err => console.error(err)
     );
-    this.publicacionService.getOne(this.publicacionId).subscribe(
-      (res: Array<Publicaciones>) => {
-        
-        this.publicacionActual = res;
-        
-        this.concatenar(this.publicacionActual);
-        this.viewImages();
-        console.log(this.publicacionActual);
-      },
-      err => console.error(err)
-    );
-    
+
+
     this.categoriaService.getCategoriasAll().subscribe(
       res => {
         console.log(res);
@@ -66,35 +77,19 @@ export class BlogSinglePublicacionComponent implements OnInit {
       },
       err => console.error(err)
     );
+
   }
 
   getNumber(array: Array<Publicaciones>, number: number) {
     this.publicaciones = this.publicaciones.splice(0, number);
   }
 
-  viewImages() {
-    for (let i = 0; i < this.publicacionActual.length; i++) {
-
-      console.log("-"+this.publicacionActual[i].image.substr(1,this.publicacionActual[i].image.length-2)+"-");
-    }
-    for (let i = 0; i < this.publicacionActual.length; i++) {
-      var auxFileName = this.publicacionActual[i].image.substr(1,this.publicacionActual[i].image.length-2);
-      this.uploadService.downloadFile(auxFileName)
-        .subscribe(
-          data => {
-            console.log(data);
-            let objectURL = URL.createObjectURL(data);
-            this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-
-            this.images.push(this.image);
-            this.publicacionActual[i].img = this.image;
-          },
-          error => console.error(error)
-        );
-    }
-  }
 
   concatenar(array: Array<Publicaciones>) {
+    
+    this.agrupadosActual=[];
+    this.auxActual=[];
+    this.keywords=[];
     for (var i = 0; i < array.length; i++) {
       this.agrupadosActual.push(array[i]);
       this.auxActual.push(array[i]);
@@ -143,34 +138,15 @@ export class BlogSinglePublicacionComponent implements OnInit {
       return unicos;
     }
 
-    
+
     this.keywords = eliminarRepetidosString(this.keywords);
   }
 
-  
-  viewImages2() {
-    for (let i = 0; i < this.publicaciones.length; i++) {
-
-      console.log("-"+this.publicaciones[i].image.substr(1,this.publicaciones[i].image.length-2)+"-");
-    }
-    for (let i = 0; i < this.publicaciones.length; i++) {
-      var auxFileName = this.publicaciones[i].image.substr(1,this.publicaciones[i].image.length-2);
-      this.uploadService.downloadFile(auxFileName)
-        .subscribe(
-          data => {
-            console.log(data);
-            let objectURL = URL.createObjectURL(data);
-            this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-
-            this.images.push(this.image);
-            this.publicaciones[i].img = this.image;
-          },
-          error => console.error(error)
-        );
-    }
-  }
 
   concatenar2(array: Array<Publicaciones>) {
+    
+    this.agrupados=[];
+    this.aux=[];
     for (var i = 0; i < array.length; i++) {
       this.agrupados.push(array[i]);
       this.aux.push(array[i]);
@@ -207,4 +183,5 @@ export class BlogSinglePublicacionComponent implements OnInit {
 
     this.publicaciones = eliminarRepetidos(this.aux);
   }
+
 }
