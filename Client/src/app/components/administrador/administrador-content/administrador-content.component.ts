@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 
 import { CategoriaService } from '../../../services/categoria.service';
 import { UploadService } from '../../../services/upload.service';
@@ -49,7 +50,7 @@ export class AdministradorContentComponent implements OnInit {
     id_keyword: 0
   }
 
-  constructor(private serviceUpload: UploadService, private publicacionService: PublicacionService, private categoriaService: CategoriaService, private keywordService: KeywordService) {
+  constructor(private serviceUpload: UploadService, private router:Router, private publicacionService: PublicacionService, private categoriaService: CategoriaService, private keywordService: KeywordService) {
   }
 
 
@@ -157,7 +158,7 @@ export class AdministradorContentComponent implements OnInit {
         res => {
           //this.upload();
           Swal.fire({
-            title: 'Publicación registrada correctamente',
+            title: 'Publicación Registrada Correctamente',
             icon: 'success',
             showClass: {
               popup: 'animated fadeInDown faster'
@@ -166,6 +167,9 @@ export class AdministradorContentComponent implements OnInit {
               popup: 'animated fadeOutUp faster'
             }
           })
+
+          this.router.navigate(['/dashboard/list']);
+
         },
         err => console.error(err)
       );

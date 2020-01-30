@@ -22,23 +22,17 @@ class CategoriaController {
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield database_1.default.query('SELECT password FROM usuarios WHERE email = ? AND password = ?', [req.body.email, req.body.password]);
-            //console.log(usuarios[0].password);
-            if (usuarios[0]) {
-                res.json({
-                    'login': 'TRUE'
-                });
+            const { id } = req.params;
+            const categorias = yield database_1.default.query('select * from categoria where id_categoria = ?', id);
+            if (categorias == null) {
+                res.status(404);
             }
-            else {
-                res.json({
-                    'login': 'FALSE'
-                });
-            }
+            res.json(categorias);
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO usuarios set ?', [req.body]);
+            yield database_1.default.query('INSERT INTO categoria set ?', [req.body]);
             res.json({
                 'text': 'Creando'
             });
@@ -47,7 +41,7 @@ class CategoriaController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE usuarios set ? WHERE id_usuario = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE categoria set ? WHERE id_categoria = ?', [req.body, id]);
             res.json({
                 'text': 'Actualizando'
             });
@@ -56,7 +50,7 @@ class CategoriaController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+            yield database_1.default.query('DELETE FROM categoria WHERE id_categoria = ?', [id]);
             res.json({
                 'text': 'Borranod'
             });

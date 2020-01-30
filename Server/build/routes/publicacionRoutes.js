@@ -16,8 +16,8 @@ class PublicacionRoutes {
         this.router.post('/create', publicacionController_1.publicacionController.createPublicacion);
         this.router.post('/:id', publicacionController_1.publicacionController.addKeyword);
         this.router.put('/:id', publicacionController_1.publicacionController.update);
-        this.router.delete('/:id', publicacionController_1.publicacionController.delete);
         this.router.delete('/keywordsOfPublicacion/:id', publicacionController_1.publicacionController.deleteKeywords);
+        this.router.delete('/:id', publicacionController_1.publicacionController.delete);
     }
 }
 const publicacionRoutes = new PublicacionRoutes();

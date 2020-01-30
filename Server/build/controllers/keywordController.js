@@ -33,7 +33,7 @@ class KeywordController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO usuarios set ?', [req.body]);
+            yield database_1.default.query('INSERT INTO keyword set ?', [req.body]);
             res.json({
                 'text': 'Creando'
             });
@@ -42,7 +42,7 @@ class KeywordController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE usuarios set ? WHERE id_usuario = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE keyword set ? WHERE id_keyword = ?', [req.body, id]);
             res.json({
                 'text': 'Actualizando'
             });
@@ -51,9 +51,9 @@ class KeywordController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+            yield database_1.default.query('DELETE FROM keyword WHERE id_keyword = ?', [id]);
             res.json({
-                'text': 'Borranod'
+                'text': 'Borrando'
             });
         });
     }

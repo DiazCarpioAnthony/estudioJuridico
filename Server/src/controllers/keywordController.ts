@@ -24,8 +24,9 @@ class KeywordController {
         res.json(keyword);
     }
 
+    
     public async create(req: Request, res: Response): Promise<void> {
-        await pool.query('INSERT INTO usuarios set ?', [req.body]);
+        await pool.query('INSERT INTO keyword set ?', [req.body]);
         res.json(
             {
                 'text': 'Creando'
@@ -35,7 +36,7 @@ class KeywordController {
 
     public async update(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.query('UPDATE usuarios set ? WHERE id_usuario = ?', [req.body, id]);
+        await pool.query('UPDATE keyword set ? WHERE id_keyword = ?', [req.body, id]);
         res.json(
             {
                 'text': 'Actualizando'
@@ -45,10 +46,10 @@ class KeywordController {
 
     public async delete(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+        await pool.query('DELETE FROM keyword WHERE id_keyword = ?', [id]);
         res.json(
             {
-                'text': 'Borranod'
+                'text': 'Borrando'
             }
         );
     }

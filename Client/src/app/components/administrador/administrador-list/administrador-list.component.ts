@@ -4,6 +4,9 @@ import { PublicacionService } from '../../../services/publicacion.service';
 import { Publicaciones } from 'src/app/models/publicacion';
 import { concat } from 'rxjs';
 
+import Swal from 'sweetalert2'
+import { DomSanitizer } from '@angular/platform-browser';
+
 /* https://es.stackoverflow.com/questions/278427/no-cargar-los-archivos-javascript-despues-de-cambio-de-componentes-en-angular */
 declare var $;
 
@@ -17,7 +20,7 @@ export class AdministradorListComponent implements OnInit {
   publicaciones: Array<Publicaciones> = [];
   agrupados: Array<Publicaciones> = [];
   aux: Array<Publicaciones> = [];
-  constructor(private publicacionService: PublicacionService) { }
+  constructor(private publicacionService: PublicacionService, private sanitizer:DomSanitizer) { }
 
   ngOnInit() {
     this.publicacionService.getPublicacionesAll().subscribe(
@@ -45,20 +48,20 @@ export class AdministradorListComponent implements OnInit {
     for (var i = 0; i < array.length; i++) {
       auxiliar = "";
       for (var j = 0; j < this.agrupados.length; j++) {
-        
+
         //this.agrupados.push(array[i]);
         //console.log(this.agrupados[j].id_publicacion + " - " + array[i].id_publicacion);
         if (this.agrupados[j].id_publicacion == array[i].id_publicacion) {
 
           //console.log("COMPARA: "+this.agrupados[j].id_publicacion + " - " + array[i].id_publicacion);
           auxiliar = auxiliar.concat(this.agrupados[j].nombre_keyword, ', ');
-          
+
         }
       }
-      this.aux[i].nombre_keyword = auxiliar.substr(0,auxiliar.length-2);
+      this.aux[i].nombre_keyword = auxiliar.substr(0, auxiliar.length - 2);
     }
 
-    const eliminarRepetidos = (array:Array<Publicaciones>) => {
+    const eliminarRepetidos = (array: Array<Publicaciones>) => {
       var unicos = [];
       var itemsEncontrados = {};
       for (var i = 0, l = array.length; i < l; i++) {
@@ -71,17 +74,42 @@ export class AdministradorListComponent implements OnInit {
     }
 
     this.publicaciones = eliminarRepetidos(this.aux);
-/*
-    for (var i = 0; i < this.publicaciones.length; i++) {
-
-      console.log(this.publicaciones[i].id_publicacion + " - " + this.publicaciones[i].nombre_keyword);
-    }
-*/
+    /*
+        for (var i = 0; i < this.publicaciones.length; i++) {
+    
+          console.log(this.publicaciones[i].id_publicacion + " - " + this.publicaciones[i].nombre_keyword);
+        }
+    */
 
   }
 
-  deletePublicacion(id:any){
-    alert(id);
+  deletePublicacion(id: any) {
+    this.publicacionService.deleteKeywords(id).subscribe(
+      res => {
+        this.publicacionService.deletePublicacion(id).subscribe(
+          res => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Publicacíon eliminada correctamente',
+              showConfirmButton: false,
+              timer: 1500
+            });
+
+            //this.router.navigate(['/dashboard/categoria']);
+            setTimeout(() => {
+              location.reload();
+            }, 1500);
+          },
+          err => console.error(err)
+        );
+
+      },
+      err => console.error(err)
+    );
   }
 
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
 }

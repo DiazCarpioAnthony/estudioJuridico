@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Usuario } from '../models/usuario';
+import { Categoria } from '../models/categoria';
 import { Observable } from 'rxjs';
 
 
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class CategoriaService {
 
   API_URI2 = "http://localhost:3000/api";
-  API_URI = "https://lawyerpage.herokuapp.com/api";;
+  API_URI = "https://lawyerpage.herokuapp.com/api";
 
   
   constructor(private http: HttpClient) { }
@@ -24,25 +24,33 @@ export class CategoriaService {
 
   }
 
-  postRegister(user: Usuario) { // ` es 96
+  getOne(id: Number) {
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post(`${this.API_URI}/user/register`, user, { headers: getHeaders } );
+    return this.http.get(`${this.API_URI}/categorias/${id}`, { headers: getHeaders });
+
   }
 
-  updateUser(id: string, userUpdate: Usuario): Observable<Usuario> { // ` es 96
+  createCategoria(categoria: Categoria) { // ` es 96
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.put(`${this.API_URI}/user/${id}`, userUpdate, { headers: getHeaders } );
+    return this.http.post(`${this.API_URI}/categorias/register`, categoria, { headers: getHeaders } );
   }
 
-  deleteUser(id: string) { // ` es 96
+  updateCategoria(id: any, updateCategoria: Categoria): Observable<Categoria> { // ` es 96
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.delete(`${this.API_URI}/user/${id}`, { headers: getHeaders } );
+    return this.http.put(`${this.API_URI}/categorias/${id}`, updateCategoria, { headers: getHeaders } );
+  }
+
+  deleteCategoria(id: string) { // ` es 96
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.delete(`${this.API_URI}/categorias/${id}`, { headers: getHeaders } );
   }
 
 }

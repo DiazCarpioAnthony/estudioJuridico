@@ -87,6 +87,14 @@ export class PublicacionService {
     return this.http.put(`${this.API_URI}/publicaciones/${id_publicacion}`, publicacion, { headers: getHeaders });
 
   }
+  
+  deletePublicacion(id_publicacion: any) { // ` es 96
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.delete(`${this.API_URI}/publicaciones/${id_publicacion}`, { headers: getHeaders });
+
+  }
 }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, UrlTree } from '@angular/router';
 
 import { CategoriaService } from '../../../services/categoria.service';
 import { UploadService } from '../../../services/upload.service';
@@ -64,7 +64,7 @@ export class AdministradorUpdateComponent implements OnInit {
     id_keyword: 0
   }
 
-  constructor(activateRoute: ActivatedRoute, private serviceUpload: UploadService, private publicacionService: PublicacionService, private categoriaService: CategoriaService, private keywordService: KeywordService) {
+  constructor(activateRoute: ActivatedRoute, private router:Router, private serviceUpload: UploadService, private publicacionService: PublicacionService, private categoriaService: CategoriaService, private keywordService: KeywordService) {
     this.publicacionId = activateRoute.snapshot.params['id'];
   }
 
@@ -94,7 +94,9 @@ export class AdministradorUpdateComponent implements OnInit {
         $("#resumen").val(this.publicacionActual[0].resumen.substr(1, this.publicacionActual[0].resumen.length - 2));
         $("#imagen").val(this.publicacionActual[0].image.substr(1, this.publicacionActual[0].image.length - 2));
         $("#categorias").val(this.publicacionActual[0].id_categoria);
+        //FALTA PINTAR KEYWORDS
         for (var i = 0; i < length; i++) {
+          console.log( this.publicacionActual[i].id_keyword);
           var aux = this.publicacionActual[i].id_keyword;
           $(`#${aux}`).prop('checked', true);
         }
@@ -143,19 +145,21 @@ export class AdministradorUpdateComponent implements OnInit {
     delete this.publicacion.id_keyword;
     delete this.publicacion.nombre_keyword;
 
+    this.publicacion.fecha = this.publicacionActual.fecha;
+
     //this.publicacion.image = this.nameFile;
     this.publicacion.id_publicacion = this.publicacionId;
-    this.publicacion.title = $("#titulo").val().concat(new String( " " ));
-    this.publicacion.title = new String( " " ).concat(this.publicacion.title);
+    this.publicacion.title = $("#titulo").val().concat(new String(" "));
+    this.publicacion.title = new String(" ").concat(this.publicacion.title);
 
-    this.publicacion.description = $("#descripcion").val().concat(new String( " " ));
-    this.publicacion.description = new String( " " ).concat(this.publicacion.description);
+    this.publicacion.description = $("#descripcion").val().concat(new String(" "));
+    this.publicacion.description = new String(" ").concat(this.publicacion.description);
 
-    this.publicacion.resumen = $("#resumen").val().concat(new String( " " ));
-    this.publicacion.resumen = new String( " " ).concat(this.publicacion.resumen);
+    this.publicacion.resumen = $("#resumen").val().concat(new String(" "));
+    this.publicacion.resumen = new String(" ").concat(this.publicacion.resumen);
 
-    this.publicacion.image = $("#imagen").val().concat(new String( " " ));
-    this.publicacion.image = new String( " " ).concat(this.publicacion.image);
+    this.publicacion.image = $("#imagen").val().concat(new String(" "));
+    this.publicacion.image = new String(" ").concat(this.publicacion.image);
 
     this.publicacion.id_categoria = $("#categorias option:selected").val();
 
@@ -194,7 +198,7 @@ export class AdministradorUpdateComponent implements OnInit {
         res => {
           //this.upload();
           Swal.fire({
-            title: 'Publicación registrada correctamente',
+            title: 'Publicación actualizada correctamente',
             icon: 'success',
             showClass: {
               popup: 'animated fadeInDown faster'
@@ -203,8 +207,11 @@ export class AdministradorUpdateComponent implements OnInit {
               popup: 'animated fadeOutUp faster'
             }
           })
+
+          this.router.navigate(['/dashboard/list']);
         },
         err => console.error(err)
+
       );
     }
   }

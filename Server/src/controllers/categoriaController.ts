@@ -12,25 +12,18 @@ class CategoriaController {
     }
 
     public async getOne(req: Request, res: Response): Promise<void> {
-        
-        const usuarios = await pool.query('SELECT password FROM usuarios WHERE email = ? AND password = ?', [req.body.email, req.body.password]);
-        //console.log(usuarios[0].password);
-        if (usuarios[0]) {
-            res.json(
-                {
-                    'login': 'TRUE'
-                });
-        } else {
-            res.json(
-                {
-                    'login': 'FALSE'
-                });
+
+        const { id } = req.params;
+        const categorias = await pool.query('select * from categoria where id_categoria = ?', id);
+        if (categorias == null) {
+            res.status(404);
         }
-        
+
+        res.json(categorias);
     }
 
     public async create(req: Request, res: Response): Promise<void> {
-        await pool.query('INSERT INTO usuarios set ?', [req.body]);
+        await pool.query('INSERT INTO categoria set ?', [req.body]);
         res.json(
             {
                 'text': 'Creando'
@@ -40,7 +33,7 @@ class CategoriaController {
 
     public async update(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.query('UPDATE usuarios set ? WHERE id_usuario = ?', [req.body, id]);
+        await pool.query('UPDATE categoria set ? WHERE id_categoria = ?', [req.body, id]);
         res.json(
             {
                 'text': 'Actualizando'
@@ -50,7 +43,7 @@ class CategoriaController {
 
     public async delete(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+        await pool.query('DELETE FROM categoria WHERE id_categoria = ?', [id]);
         res.json(
             {
                 'text': 'Borranod'

@@ -1,1 +1,83 @@
-<p>categoria-new works!</p>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Categorias</h1>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Nueva Categoria</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Otras acciones:</div>
+                            <a class="dropdown-item" routerLink="/dashboard/list">Ver lista de categorias</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-area">
+                        <form class="user col-xl-10 col-lg-10" style="margin: auto; ">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="categoria.nombre_categoria"
+                                    class="form-control form-control-user" placeholder="Nombre de la categoría"
+                                    name="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <textarea rows="4" cols="50" [(ngModel)]="categoria.descripcion"
+                                    style="border-radius: 15px;" class="form-control form-control-user"
+                                    placeholder="Descripcion" name="Descripcion"></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Categorías</label>
+                                <div id="iconos" style="display: flex; justify-content: space-between; flex-direction: row; overflow-x: scroll; scrollbar-width: thin;">
+                                    <div *ngFor="let ico of iconos" >
+                                        <div>
+
+                                            <input type="radio" name="icono" [value]="ico.icono">
+                                            <div class="practice-area bg-white ftco-animate p-4 fadeInUp ftco-animated">
+                                                <div class="icon d-flex justify-content-center align-items-center"
+                                                    style="height: 60px; width: 60px;">
+                                                    <span [class]="ico.icono" style="font-size: 30px;"></span>
+                                                    <!-- <span [class]="this.asd"></span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-block btn-submit" (click)="nuevaCategoria()">
+                                Crear Nueva Categoría
+                            </button>
+                            <br>
+                            <br>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.container-fluid -->
