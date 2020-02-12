@@ -28,6 +28,10 @@ import { KeywordListComponent } from './components/administrador/keyword/keyword
 import { KeywordNewComponent } from './components/administrador/keyword/keyword-new/keyword-new.component';
 import { KeywordUpdateComponent } from './components/administrador/keyword/keyword-update/keyword-update.component';
 
+import { AbogadoListComponent } from './components/administrador/abogado/abogado-list/abogado-list.component';
+import { AbogadoNewComponent } from './components/administrador/abogado/abogado-new/abogado-new.component';
+import { AbogadoUpdateComponent } from './components/administrador/abogado/abogado-update/abogado-update.component';
+
 //Guard
 import { AuthGuard } from './guards/auth.guard';
 import { AuthLoginGuard } from './guards/auth-login.guard';
@@ -73,11 +77,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'categoria',
+        path: 'categoria/:idCategoria',
         component: BannerBlogSingleComponent,
         children: [
           {
-            path: ':idCategoria',
+            path: '',
             component: BlogSingleListComponent
           }
         ]
@@ -130,6 +134,19 @@ const routes: Routes = [
       {
         path: 'keyword/update/:id',
         component: KeywordUpdateComponent
+      },
+
+      {
+        path: 'abogado',
+        component: AbogadoNewComponent
+      },
+      {
+        path: 'abogado/list',
+        component: AbogadoListComponent
+      },
+      {
+        path: 'abogado/update/:id',
+        component: AbogadoUpdateComponent
       },
     ]
   },

@@ -11,9 +11,9 @@
 <div class="sidebar-box ftco-animate">
     <div class="categories">
         <h3>Categorias</h3>
-        <li *ngFor="let categoria of categorias"><a
+        <li *ngFor="let categoria of categorias"><a id="{{categoria.id_categoria}}"
                 routerLink="/blogSingle/categoria/{{categoria.id_categoria}}">{{categoria.nombre_categoria}} <span
-                    class="ion-ios-arrow-forward"></span></a></li>
+                    class="ion-ios-arrow-forward" ></span></a></li>
 
     </div>
 </div>
@@ -88,6 +88,6 @@
     <div class="sidebar-box ftco-animate">
         <div *ngFor="let pActual of publicacionActual">
             <h3 >Resumen</h3>
-            <p style=" word-break: break-all;">{{pActual.resumen}}</p>
+            <p style="white-space: pre-wrap;">{{pActual.resumen}}</p>
         </div>
     </div>

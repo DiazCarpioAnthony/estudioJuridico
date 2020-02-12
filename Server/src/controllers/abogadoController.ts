@@ -46,7 +46,7 @@ class AbogadoController {
 
     public async delete(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+        await pool.query('DELETE FROM abogado WHERE id_abogado = ?', [id]);
         res.json(
             {
                 'text': 'Borranod'

@@ -57,6 +57,9 @@ import { KeywordUpdateComponent } from './components/administrador/keyword/keywo
 import { AdministradorUpdateComponent } from './components/administrador/administrador-update/administrador-update.component';
 import { BlogSingleListComponent } from './components/blogSingle/blog-single-list/blog-single-list.component';
 import { BlogSingleAsideComponent } from './components/blogSingle/blog-single-aside/blog-single-aside.component';
+import { AbogadoNewComponent } from './components/administrador/abogado/abogado-new/abogado-new.component';
+import { AbogadoListComponent } from './components/administrador/abogado/abogado-list/abogado-list.component';
+import { AbogadoUpdateComponent } from './components/administrador/abogado/abogado-update/abogado-update.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +104,10 @@ import { BlogSingleAsideComponent } from './components/blogSingle/blog-single-as
     KeywordUpdateComponent,
     AdministradorUpdateComponent,
     BlogSingleListComponent,
-    BlogSingleAsideComponent
+    BlogSingleAsideComponent,
+    AbogadoNewComponent,
+    AbogadoListComponent,
+    AbogadoUpdateComponent
   ],
   imports: [
     BrowserModule,

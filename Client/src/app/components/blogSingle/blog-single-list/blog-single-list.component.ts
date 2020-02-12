@@ -39,6 +39,8 @@ export class BlogSingleListComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+
     this.activateRoute.paramMap.subscribe((params: ParamMap) => {
       this.publicacionId = this.activateRoute.snapshot.paramMap.get("idCategoria");
 

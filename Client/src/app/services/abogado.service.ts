@@ -25,14 +25,29 @@ export class AbogadoService {
 
   }
 
-  updateUser(id: string, abogadoUpdate: Abogado): Observable<Abogado> { // ` es 96
+  getOne(id: Number) {
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.put(`${this.API_URI}/abogados/${id}`, abogadoUpdate, { headers: getHeaders } );
+    return this.http.get(`${this.API_URI}/abogados/${id}`, { headers: getHeaders });
+
   }
 
-  deleteUser(id: string) { // ` es 96
+  createAbogado(abogado: Abogado) { // ` es 96
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(`${this.API_URI}/abogados/register`, abogado, { headers: getHeaders } );
+  }
+
+  updateAbogado(id: any, updateAbogado: Abogado): Observable<Abogado> { // ` es 96
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put(`${this.API_URI}/abogados/${id}`, updateAbogado, { headers: getHeaders } );
+  }
+
+  deleteAbogado(id: string) { // ` es 96
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });

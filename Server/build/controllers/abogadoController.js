@@ -51,7 +51,7 @@ class AbogadoController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM usuarios WHERE id_usuario = ?', [id]);
+            yield database_1.default.query('DELETE FROM abogado WHERE id_abogado = ?', [id]);
             res.json({
                 'text': 'Borranod'
             });

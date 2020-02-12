@@ -21,6 +21,7 @@ declare var $;
 export class BlogSingleAsideComponent implements OnInit {
 
   publicacionId: any;
+  categoriaId: any;
 
   categorias: any = [];
   images: any = [];
@@ -35,28 +36,36 @@ export class BlogSingleAsideComponent implements OnInit {
   keywords: any = [];
 
   constructor(private router: Router, private categoriaService: CategoriaService, private uploadService: UploadService, private sanitizer: DomSanitizer, private publicacionService: PublicacionService, public activateRoute: ActivatedRoute) {
-
+/*
+    this.categoriaId = this.activateRoute.snapshot.paramMap.get("idCategoria");
+    $(`#${this.publicacionId}`).addClass("active");
+*/
   }
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe((params: ParamMap) => {
       this.publicacionId = this.activateRoute.snapshot.paramMap.get("id");
 
+     // alert(this.categoriaId);
+
+
+      $(`#${this.categoriaId}`).addClass("active");
+
       this.publicacionService.getOne(this.publicacionId).subscribe(
         (res: Array<Publicaciones>) => {
 
 
-          this.publicacionActual=null;
+          this.publicacionActual = null;
           this.publicacionActual = res;
-          
+
 
           console.log("-----DESPUES DEL RES-------");
           console.log(this.publicacionActual);
           this.concatenar(this.publicacionActual);
-          
+
         },
         err => console.error(err)
-      );    
+      );
 
     })
 
@@ -90,10 +99,10 @@ export class BlogSingleAsideComponent implements OnInit {
 
 
   concatenar(array: Array<Publicaciones>) {
-    
-    this.agrupadosActual=[];
-    this.auxActual=[];
-    this.keywords=[];
+
+    this.agrupadosActual = [];
+    this.auxActual = [];
+    this.keywords = [];
     for (var i = 0; i < array.length; i++) {
       this.agrupadosActual.push(array[i]);
       this.auxActual.push(array[i]);
@@ -148,9 +157,9 @@ export class BlogSingleAsideComponent implements OnInit {
 
 
   concatenar2(array: Array<Publicaciones>) {
-    
-    this.agrupados=[];
-    this.aux=[];
+
+    this.agrupados = [];
+    this.aux = [];
     for (var i = 0; i < array.length; i++) {
       this.agrupados.push(array[i]);
       this.aux.push(array[i]);
