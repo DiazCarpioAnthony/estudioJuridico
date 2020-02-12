@@ -11,7 +11,7 @@
             <div class="col-lg-4 col-sm-6" *ngFor="let abogado of abogados | paginate: {itemsPerPage: 6, currentPage: pageActual2}">
                 <div class="block-2 ftco-animated">
                     <div class="flipper">
-                        <div class="front" [ngStyle]="{'background-image':'url(' + abogado.image + ')'}">
+                        <div class="front" [ngStyle]="{'background-image':'url(' + abogado.image + ')'}" style="background-size: cover;">
                             
                             <div class="box">
                                 <h2><span *ngIf="abogado.isDoctor">Dr. </span>{{abogado.nombre_abogado}}</h2>
@@ -21,7 +21,7 @@
                         <div class="back">
                             <!-- back content -->
                             <blockquote>
-                                <p>DNI: {{abogado.DNI}} <br>
+                                <p style="word-break: break-all;">DNI: {{abogado.DNI}} <br>
                                     E-mail: {{abogado.correo}} <br>
                                     <span *ngIf="abogado.colegiatura">Colegiatura: {{abogado.colegiatura}}</span>
                                     <span *ngIf="abogado.condicion != 'Abogado'">Condición: {{abogado.condicion}}</span>
