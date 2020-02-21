@@ -36,7 +36,34 @@ export class BlogSinglePublicacionComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    /*
+    setTimeout(function () {
+      window.scrollTo(500, 0);
+    }, 1);*/
+
+    var scrollStep = -window.scrollY / (1500 / 15),
+      scrollInterval = setInterval(function () {
+        if (window.scrollY != 0) {
+          window.scrollBy(0, scrollStep);
+        }
+        else clearInterval(scrollInterval);
+      }, 15);
+
     this.activateRoute.paramMap.subscribe((params: ParamMap) => {
+/*
+    setTimeout(function () {
+      window.scrollTo(500, 0);
+    }, 1);*/
+
+    var scrollStep = -window.scrollY / (1500 / 15),
+      scrollInterval = setInterval(function () {
+        if (window.scrollY != 0) {
+          window.scrollBy(0, scrollStep);
+        }
+        else clearInterval(scrollInterval);
+      }, 15);
+
       this.publicacionId = this.activateRoute.snapshot.paramMap.get("id");
 
       this.publicacionService.getOne(this.publicacionId).subscribe(
