@@ -89,10 +89,10 @@ export class AdministradorUpdateComponent implements OnInit {
         this.publicacionActual = res;
         var length = Object.keys(this.publicacionActual).length;
 
-        $("#titulo").val(this.publicacionActual[0].title.substr(1, this.publicacionActual[0].title.length - 2));
-        $("#descripcion").val(this.publicacionActual[0].description.substr(1, this.publicacionActual[0].description.length - 2));
-        $("#resumen").val(this.publicacionActual[0].resumen.substr(1, this.publicacionActual[0].resumen.length - 2));
-        $("#imagen").val(this.publicacionActual[0].image.substr(1, this.publicacionActual[0].image.length - 2));
+        $("#titulo").val(this.publicacionActual[0].title.replace(/^[ ]+|[ ]+$/g,''));
+        $("#descripcion").val(this.publicacionActual[0].description.replace(/^[ ]+|[ ]+$/g,''));
+        $("#resumen").val(this.publicacionActual[0].resumen.replace(/^[ ]+|[ ]+$/g,''));
+        $("#imagen").val(this.publicacionActual[0].image.replace(/^[ ]+|[ ]+$/g,''));
         $("#categorias").val(this.publicacionActual[0].id_categoria);
         //FALTA PINTAR KEYWORDS
         for (var i = 0; i < length; i++) {
